@@ -6,12 +6,12 @@
     <title>Sanchita Santosh Jadhav — Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root{
             /* Core Theme Colors */
-            --bg:#080b11;
-            --card:#101620;
+            --bg:#05070a; /* Darker Background */
+            --card:#0d1118; /* Darker Card */
             --text:#f8faff;
             --muted:#aab8c8;
             --border:#1f2937;
@@ -21,12 +21,12 @@
             --purple-acc:#a78bfa; 
             --cyan-acc:#22d3ee;
             --green-acc:#4ade80;
+            --red-acc:#ef4444;
         }
         *{box-sizing:border-box}
         html,body{
             margin:0;
             padding:0;
-            /* Deeper gradient for a high-contrast look */
             background:radial-gradient(1200px 600px at 20% -10%, #151e2e 0%, var(--bg) 50%, var(--bg) 100%); 
             font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; 
             color:var(--text);
@@ -39,30 +39,29 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Card sections slide and fade in, staggered */
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes pulseGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        /* Tag "sparkle" animation */
         @keyframes sparkle {
             0% { opacity: 0; transform: scale(0.5); }
             80% { opacity: 1; transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        /* New: Header Pulse */
+        @keyframes headerPulse {
+            0%, 100% { color: var(--blue-acc); text-shadow: none; }
+            50% { color: var(--cyan-acc); text-shadow: 0 0 5px rgba(34, 211, 238, 0.5); }
+        }
         /* ============================ */
         
         header{
             display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center;
-            /* Header gradient uses more colors */
             background:linear-gradient(180deg, rgba(96,165,250,.2), rgba(167,139,250,.1)), var(--card);
             border:1px solid var(--border); border-radius:18px; padding:24px;
             animation: fadeIn 0.8s ease-out;
@@ -70,10 +69,10 @@
         .avatar{width:120px; height:120px; border-radius:16px; overflow:hidden; border:3px solid var(--blue-acc); box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);}
         .avatar img{width:100%; height:100%; object-fit:cover}
         .title h1{margin:0; font-size:28px;}
-        .title .role{color:var(--cyan-acc); margin-top:6px; font-weight: 600;}
+        .title .role{color:var(--cyan-acc); margin-top:6px; font-weight: 700;}
         .contact{display:flex; gap:12px; flex-wrap:wrap; justify-self:end}
         
-        /* Contact chip animation */
+        /* Interactive Contact Chip */
         .chip{
             background:#1f2937; border:1px solid var(--border); 
             padding:8px 12px; border-radius:999px; font-size:13px;
@@ -96,9 +95,8 @@
             border-radius:16px; 
             padding:18px;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            animation: slideIn 0.8s ease-out backwards; /* Base slide-in animation */
+            animation: slideIn 0.8s ease-out backwards; 
         }
-        /* Staggered animation for each card */
         .card:nth-child(1) { animation-delay: 0.1s; }
         .card:nth-child(2) { animation-delay: 0.2s; }
         .card:nth-child(3) { animation-delay: 0.3s; }
@@ -107,19 +105,60 @@
 
         .card:hover {
             transform: translateY(-5px); 
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.15); /* Stronger glow shadow */
             border-color: var(--purple-acc);
         }
 
-        .card h2{margin:0 0 12px; font-size:18px; color: var(--blue-acc);}
+        /* Pulsing Header and Interactive Text */
+        .card h2{
+            margin:0 0 12px; 
+            font-size:18px; 
+            color: var(--blue-acc);
+            animation: headerPulse 3s infinite alternate; /* Pulsing effect */
+            font-weight: 800;
+        }
+        .card p strong, .card .row strong {
+            transition: color 0.3s ease;
+        }
+        .card:hover p strong, .card:hover .row strong {
+            color: var(--green-acc); /* Key text color change on card hover */
+        }
+        
         .section{display:grid; gap:12px}
         
+        /* Interactive Item (Background Wipe) */
         .item{
             padding:12px; 
             border-radius:12px; 
             border:1px solid #1a2433; 
             background:#0e1625;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
+        .item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(96, 165, 250, 0.15); /* Light blue wipe background */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        .item:hover {
+            border-color: var(--blue-acc);
+            box-shadow: 0 0 15px rgba(96, 165, 250, 0.5); /* Item glow */
+            transform: translateX(5px);
+        }
+        .item:hover::before {
+            transform: scaleX(1); /* Wipe effect */
+        }
+
 
         .row{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
         .muted{color:var(--muted)}
@@ -130,26 +169,25 @@
             color: var(--text); margin-right:8px;
             border: 1px solid transparent;
             animation: sparkle 0.5s ease-out backwards;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-        .tag:nth-child(1) { background: linear-gradient(90deg, #ef4444, #f97316); border-color: #f97316; animation-delay: 0.6s; } /* Red/Orange: IoT */
-        .tag:nth-child(2) { background: linear-gradient(90deg, #8b5cf6, #c084fc); border-color: #c084fc; animation-delay: 0.7s; } /* Purple/Violet: Sensors */
-        .tag:nth-child(3) { background: linear-gradient(90deg, #10b981, #34d399); border-color: #34d399; animation-delay: 0.8s; } /* Green/Emerald: Data Viz */
-        .tag:nth-child(4) { background: linear-gradient(90deg, #06b6d4, #22d3ee); border-color: #22d3ee; animation-delay: 0.9s; } /* Cyan/Teal: Presentation */
-        .tag:nth-child(5) { background: linear-gradient(90deg, #f59e0b, #fbbf24); border-color: #fbbf24; animation-delay: 1.0s; } /* Yellow/Amber: Research */
-        .tag:hover { transform: scale(1.1); }
+        .tag:nth-child(1) { background: linear-gradient(90deg, #ef4444, #f97316); border-color: #f97316; animation-delay: 0.6s; } 
+        .tag:nth-child(2) { background: linear-gradient(90deg, #8b5cf6, #c084fc); border-color: #c084fc; animation-delay: 0.7s; } 
+        .tag:nth-child(3) { background: linear-gradient(90deg, #10b981, #34d399); border-color: #34d399; animation-delay: 0.8s; } 
+        .tag:nth-child(4) { background: linear-gradient(90deg, #06b6d4, #22d3ee); border-color: #22d3ee; animation-delay: 0.9s; } 
+        .tag:nth-child(5) { background: linear-gradient(90deg, #f59e0b, #fbbf24); border-color: #fbbf24; animation-delay: 1.0s; }
+        .tag:hover { transform: scale(1.1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); } /* Tag hover glow */
 
-        /* Progress Bar Styling and Animation */
-        .bar{height:8px; border-radius:999px; background:#0c1422; border:1px solid #172032; overflow:hidden}
+        /* Progress Bar Styling and Animation (Intensified) */
+        .bar{height:10px; border-radius:999px; background:#0c1422; border:1px solid #172032; overflow:hidden}
         .bar span{
             display:block; 
             height:100%; 
-            /* Multi-color pulsing gradient */
             background: linear-gradient(90deg, var(--green-acc), var(--cyan-acc), var(--blue-acc), var(--purple-acc), var(--green-acc));
             background-size: 400% 100%; 
             width:var(--w);
-            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Slower, smoother fill */
-            animation: pulseGradient 6s linear infinite; 
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); 
+            animation: pulseGradient 4s linear infinite; /* Faster pulse */
         }
 
         @media (max-width: 860px){
