@@ -1,116 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sanchita Santosh Jadhav — Resume</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0f17;
-      --card:#111827;
-      --text:#e5e7eb;
-      --muted:#94a3b8;
-      --accent:#60a5fa;
-      --accent2:#a78bfa;
-      --border:#1f2937;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 20% -10%, #0e1726 0%, #0b0f17 50%, #0b0f17 100%); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--text)}
-    .container{max-width:1000px; margin:60px auto; padding:0 24px}
-    header{
-      display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center;
-      background:linear-gradient(180deg, rgba(96,165,250,.15), rgba(167,139,250,.08)), var(--card);
-      border:1px solid var(--border); border-radius:18px; padding:24px;
-    }
-    .avatar{width:120px; height:120px; border-radius:16px; overflow:hidden; border:1px solid var(--border);}
-    .avatar img{width:100%; height:100%; object-fit:cover}
-    .title h1{margin:0; font-size:28px;}
-    .title .role{color:var(--muted); margin-top:6px}
-    .contact{display:flex; gap:12px; flex-wrap:wrap; justify-self:end}
-    .chip{background:#1f2937; border:1px solid var(--border); padding:8px 12px; border-radius:999px; font-size:13px}
-    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:24px; margin-top:24px}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px;}
-    .card h2{margin:0 0 12px; font-size:18px;}
-    .section{display:grid; gap:12px}
-    .item{padding:12px; border-radius:12px; border:1px solid #1a2433; background:#0e1625}
-    .row{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
-    .muted{color:var(--muted)}
-    .tag{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; background:#0b1320; border:1px solid #172032; color:#cbd5e1; margin-right:8px}
-    .bar{height:8px; border-radius:999px; background:#0c1422; border:1px solid #172032; overflow:hidden}
-    .bar span{display:block; height:100%; background:linear-gradient(90deg, var(--accent), var(--accent2)); width:var(--w)}
-    @media (max-width: 860px){.grid{grid-template-columns:1fr} header{grid-template-columns:80px 1fr} .avatar{width:80px; height:80px} .contact{justify-self:start}}
-    footer{margin-top:20px; color:var(--muted); font-size:12px; text-align:center}
-    a{color:#93c5fd; text-decoration:none}
-    a:hover{text-decoration:underline}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sanchita Santosh Jadhav — Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg:#0b0f17;
+            --card:#111827;
+            --text:#e5e7eb;
+            --muted:#94a3b8;
+            --accent:#60a5fa; /* Original accent color (light blue) */
+            --accent2:#a78bfa; /* Original secondary accent (light purple) */
+            --border:#1f2937;
+        }
+        *{box-sizing:border-box}
+        html,body{
+            margin:0;
+            padding:0;
+            background:radial-gradient(1200px 600px at 20% -10%, #0e1726 0%, #0b0f17 50%, #0b0f17 100%); 
+            font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; 
+            color:var(--text);
+            min-height: 100vh; /* Ensure body covers full viewport height */
+        }
+        .container{max-width:1000px; margin:60px auto; padding:0 24px}
+        
+        /* === ANIMATION: KEYFRAMES === */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* ============================ */
+        
+        header{
+            display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center;
+            background:linear-gradient(180deg, rgba(96,165,250,.15), rgba(167,139,250,.08)), var(--card);
+            border:1px solid var(--border); border-radius:18px; padding:24px;
+            
+            /* Animation applied */
+            animation: fadeIn 0.8s ease-out;
+        }
+        .avatar{width:120px; height:120px; border-radius:16px; overflow:hidden; border:2px solid var(--accent);}
+        .avatar img{width:100%; height:100%; object-fit:cover}
+        .title h1{margin:0; font-size:28px;}
+        .title .role{color:var(--muted); margin-top:6px}
+        .contact{display:flex; gap:12px; flex-wrap:wrap; justify-self:end}
+        .chip{
+            background:#1f2937; border:1px solid var(--border); 
+            padding:8px 12px; border-radius:999px; font-size:13px;
+            transition: background 0.3s ease;
+        }
+        .chip:hover {
+            background: rgba(96,165,250,.2); /* Subtle hover effect */
+        }
+        .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:24px; margin-top:24px}
+        
+        /* Card hover animation */
+        .card{
+            background:var(--card); 
+            border:1px solid var(--border); 
+            border-radius:16px; 
+            padding:18px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px); /* Slight lift */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        }
+
+        .card h2{margin:0 0 12px; font-size:18px;}
+        .section{display:grid; gap:12px}
+        .item{padding:12px; border-radius:12px; border:1px solid #1a2433; background:#0e1625}
+        .row{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
+        .muted{color:var(--muted)}
+        .tag{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; background:#0b1320; border:1px solid #172032; color:#cbd5e1; margin-right:8px}
+        
+        /* Progress Bar Styling and Animation */
+        .bar{height:8px; border-radius:999px; background:#0c1422; border:1px solid #172032; overflow:hidden}
+        .bar span{
+            display:block; 
+            height:100%; 
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent)); /* Make gradient repeatable */
+            background-size: 200% 100%; /* Important for the pulse effect */
+            width:var(--w);
+            transition: width 1s ease-out; /* Smooth skill bar fill */
+            animation: pulseGradient 4s linear infinite; /* Subtle color shift animation */
+        }
+
+        @media (max-width: 860px){
+            .grid{grid-template-columns:1fr} 
+            header{grid-template-columns:80px 1fr; align-items: start;} 
+            .avatar{width:80px; height:80px} 
+            .contact{justify-self:start; margin-top: 10px;}
+        }
+        footer{margin-top:40px; color:var(--muted); font-size:12px; text-align:center}
+        a{color:#93c5fd; text-decoration:none}
+        a:hover{text-decoration:underline}
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="avatar">
-        <img src="images/sanchita.jpeg" alt="Sanchita S. Jadhav">
-      </div>
-      <div class="title">
-        <h1>Sanchita Santosh Jadhav</h1>
-        <div class="role">B.Tech (AI & Data Science), 1st Year — Arvind Gavali College of Engineering, Satara</div>
-        <div class="muted">Satara, Maharashtra, India</div>
-      </div>
-      <div class="contact">
-        <span class="chip">📧 jadhavsanchita051@gmail.com</span>
-        <span class="chip">🌐 GitHub: github.com/sanchyta</span>
-        <span class="chip">🗣️ English · Marathi · Hindi</span>
-      </div>
-    </header>
+    <div class="container">
+        <header>
+            <div class="avatar">
+                <img src="sanchita.jpg" alt="Sanchita S. Jadhav"> 
+            </div>
+            <div class="title">
+                <h1>Sanchita Santosh Jadhav</h1>
+                <div class="role">B.Tech (AI & Data Science), 1st Year — Arvind Gavali College of Engineering, Satara</div>
+                <div class="muted">Satara, Maharashtra, India</div>
+            </div>
+            <div class="contact">
+                <span class="chip">📧 jadhavsanchita051@gmail.com</span>
+                <span class="chip">🌐 GitHub: github.com/sanchyta</span>
+                <span class="chip">🗣️ English · Marathi · Hindi</span>
+            </div>
+        </header>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Career Objective</h2>
-        <div class="section">
-          <div class="item">
-            <p>I am a dedicated and enthusiastic student pursuing a degree in Artificial Intelligence and Data Science at Arvind Gavali College of Engineering, Satara. I am passionate about learning new technologies and applying my knowledge to solve real-world problems. My goal is to become a successful AI–Data Scientist engineer in the future. I also love to dance.</p>
-          </div>
+        <div class="grid">
+            <section class="card">
+                <h2>Career Objective</h2>
+                <div class="section">
+                    <div class="item">
+                        <p>I am a dedicated and enthusiastic student pursuing a degree in **Artificial Intelligence and Data Science** at Arvind Gavali College of Engineering, Satara. I am passionate about learning new technologies and applying my knowledge to solve real-world problems. My goal is to become a successful AI–Data Scientist engineer in the future. I also love to dance.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Highlights</h2>
+                <div class="section">
+                    <div class="item"><div class="row"><strong>Passion:</strong> <span class="muted">Classical dancing & creative problem-solving</span></div></div>
+                    <div class="item"><div class="row"><strong>Communication:</strong> <span class="muted">Clear, confident, and collaborative</span></div></div>
+                    <div class="item"><div class="row"><strong>Work ethic:</strong> <span class="muted">Punctual, hardworking, and growth-oriented</span></div></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Projects</h2>
+                <div class="section">
+                    <div class="item">
+                        <div class="row"><strong>Noise pollution mapping (ESP32 + sound module)</strong><span class="tag">IoT</span><span class="tag">Sensors</span><span class="tag">Data Viz</span></div>
+                        <p class="muted">Built an IoT system with **ESP32** and a microphone module to measure ambient sound levels and map noise hotspots via an AP interface. Hosted a local dashboard for live decibel readings and visualization.</p>
+                    </div>
+                    <div class="item">
+                        <div class="row"><strong>Avishkar poster competition 2025</strong><span class="tag">Presentation</span><span class="tag">Research</span></div>
+                        <p class="muted">Participated at the college level, presenting a technical poster and communicating methodology and outcomes effectively.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Education</h2>
+                <div class="section">
+                    <div class="item"><div class="row"><strong>SSC:</strong><span class="muted">80%</span></div></div>
+                    <div class="item"><div class="row"><strong>HSC:</strong><span class="muted">65%</span></div></div>
+                    <div class="item"><div class="row"><strong>JEE:</strong><span class="muted">50%</span></div></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Skills</h2>
+                <div class="section">
+                    <div class="item"><div class="row"><strong>Programming:</strong><span class="muted">Python (learning), C basics</span></div><div class="bar" style="--w:58%"><span></span></div></div>
+                    <div class="item"><div class="row"><strong>Data foundations:</strong><span class="muted">Statistics, visualization (beginner)</span></div><div class="bar" style="--w:45%"><span></span></div></div>
+                    <div class="item"><div class="row"><strong>IoT & electronics:</strong><span class="muted">ESP32, sensors, prototyping</span></div><div class="bar" style="--w:62%"><span></span></div></div>
+                    
+                    <div class="item"><div class="row"><strong>Soft skills:</strong><span class="muted">Teamwork, communication, time management</span></div><div class="bar" style="--w:80%"><span></span></div></div>
+                </div>
+            </section>
         </div>
-      </section>
-
-      <section class="card">
-        <h2>Highlights</h2>
-        <div class="section">
-          <div class="item"><div class="row"><strong>Passion:</strong> <span class="muted">Classical dancing & creative problem-solving</span></div></div>
-          <div class="item"><div class="row"><strong>Communication:</strong> <span class="muted">Clear, confident, and collaborative</span></div></div>
-          <div class="item"><div class="row"><strong>Work ethic:</strong> <span class="muted">Punctual, hardworking, and growth-oriented</span></div></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Projects</h2>
-        <div class="section">
-          <div class="item">
-            <div class="row"><strong>Noise pollution mapping (ESP32 + sound module)</strong><span class="tag">IoT</span><span class="tag">Sensors</span><span class="tag">Data Viz</span></div>
-            <p class="muted">Built an IoT system with ESP32 and a microphone module to measure ambient sound levels and map noise hotspots via an AP interface. Hosted a local dashboard for live decibel readings and visualization.</p>
-          </div>
-          <div class="item">
-            <div class="row"><strong>Avishkar poster competition 2025</strong><span class="tag">Presentation</span><span class="tag">Research</span></div>
-            <p class="muted">Participated at the college level, presenting a technical poster and communicating methodology and outcomes effectively.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Education</h2>
-        <div class="section">
-          <div class="item"><div class="row"><strong>SSC:</strong><span class="muted">80%</span></div></div>
-          <div class="item"><div class="row"><strong>HSC:</strong><span class="muted">65%</span></div></div>
-          <div class="item"><div class="row"><strong>JEE:</strong><span class="muted">50%</span></div></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Skills</h2>
-        <div class="section">
-          <div class="item"><div class="row"><strong>Programming:</strong><span class="muted">Python (learning), C basics</span></div><div class="bar" style="--w:58%"><span></span></div></div>
-          <div class="item"><div class="row"><strong>Data foundations:</strong><span class="muted">Statistics, visualization (beginner)</span></div><div class="bar" style="--w:45%"><span></span></div></div>
-          <div class="item"><div class="row"><strong>IoT & electronics:</strong><span class="muted">ESP32, sensors, prototyping</span></div><div class="bar" style="--w:62%"><span></span></div></div>
-          <div class="item"><div class="row"><strong>Soft skills:</strong
+        
+        <footer>
+            <p>Resume built with HTML & CSS | Sanchita S. Jadhav &copy; 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
