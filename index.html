@@ -132,10 +132,11 @@
             animation: sparkle 0.5s ease-out backwards;
             transition: transform 0.2s ease;
         }
-        .tag:nth-child(1) { background: linear-gradient(90deg, #ef4444, #f97316); border-color: #f97316; animation-delay: 0.6s; } /* Red/Orange */
-        .tag:nth-child(2) { background: linear-gradient(90deg, #8b5cf6, #c084fc); border-color: #c084fc; animation-delay: 0.7s; } /* Purple/Violet */
-        .tag:nth-child(3) { background: linear-gradient(90deg, #10b981, #34d399); border-color: #34d399; animation-delay: 0.8s; } /* Green/Emerald */
-        .tag:nth-child(4) { background: linear-gradient(90deg, #06b6d4, #22d3ee); border-color: #22d3ee; animation-delay: 0.9s; } /* Cyan/Teal */
+        .tag:nth-child(1) { background: linear-gradient(90deg, #ef4444, #f97316); border-color: #f97316; animation-delay: 0.6s; } /* Red/Orange: IoT */
+        .tag:nth-child(2) { background: linear-gradient(90deg, #8b5cf6, #c084fc); border-color: #c084fc; animation-delay: 0.7s; } /* Purple/Violet: Sensors */
+        .tag:nth-child(3) { background: linear-gradient(90deg, #10b981, #34d399); border-color: #34d399; animation-delay: 0.8s; } /* Green/Emerald: Data Viz */
+        .tag:nth-child(4) { background: linear-gradient(90deg, #06b6d4, #22d3ee); border-color: #22d3ee; animation-delay: 0.9s; } /* Cyan/Teal: Presentation */
+        .tag:nth-child(5) { background: linear-gradient(90deg, #f59e0b, #fbbf24); border-color: #fbbf24; animation-delay: 1.0s; } /* Yellow/Amber: Research */
         .tag:hover { transform: scale(1.1); }
 
         /* Progress Bar Styling and Animation */
@@ -203,11 +204,20 @@
                 <h2>Projects</h2>
                 <div class="section">
                     <div class="item">
-                        <div class="row"><strong>Noise pollution mapping (ESP32 + sound module)</strong><span class="tag">IoT</span><span class="tag">Sensors</span><span class="tag">Data Viz</span></div>
+                        <div class="row">
+                            <strong>Noise pollution mapping (ESP32 + sound module)</strong>
+                            <span class="tag">IoT</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Data Viz</span>
+                        </div>
                         <p class="muted">Built an IoT system with **ESP32** and a microphone module to measure ambient sound levels and map noise hotspots via an AP interface. Hosted a local dashboard for live decibel readings and visualization.</p>
                     </div>
                     <div class="item">
-                        <div class="row"><strong>Avishkar poster competition 2025</strong><span class="tag">Presentation</span><span class="tag">Research</span></div>
+                        <div class="row">
+                            <strong>Avishkar poster competition 2025</strong>
+                            <span class="tag">Presentation</span>
+                            <span class="tag">Research</span>
+                        </div>
                         <p class="muted">Participated at the college level, presenting a technical poster and communicating methodology and outcomes effectively.</p>
                     </div>
                 </div>
