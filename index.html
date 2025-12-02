@@ -9,28 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root{
-            --bg:#0b0f17;
-            --card:#111827;
-            --text:#e5e7eb;
-            --muted:#94a3b8;
-            --accent:#60a5fa; /* Original accent color (light blue) */
-            --accent2:#a78bfa; /* Original secondary accent (light purple) */
+            /* Core Theme Colors */
+            --bg:#080b11;
+            --card:#101620;
+            --text:#f8faff;
+            --muted:#aab8c8;
             --border:#1f2937;
+
+            /* Accent Colors */
+            --blue-acc:#60a5fa; 
+            --purple-acc:#a78bfa; 
+            --cyan-acc:#22d3ee;
+            --green-acc:#4ade80;
         }
         *{box-sizing:border-box}
         html,body{
             margin:0;
             padding:0;
-            background:radial-gradient(1200px 600px at 20% -10%, #0e1726 0%, #0b0f17 50%, #0b0f17 100%); 
+            /* Deeper gradient for a high-contrast look */
+            background:radial-gradient(1200px 600px at 20% -10%, #151e2e 0%, var(--bg) 50%, var(--bg) 100%); 
             font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; 
             color:var(--text);
-            min-height: 100vh; /* Ensure body covers full viewport height */
+            min-height: 100vh; 
         }
         .container{max-width:1000px; margin:60px auto; padding:0 24px}
         
-        /* === ANIMATION: KEYFRAMES === */
+        /* === KEYFRAMES === */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card sections slide and fade in, staggered */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -39,61 +51,104 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Tag "sparkle" animation */
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0.5); }
+            80% { opacity: 1; transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
         /* ============================ */
         
         header{
             display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center;
-            background:linear-gradient(180deg, rgba(96,165,250,.15), rgba(167,139,250,.08)), var(--card);
+            /* Header gradient uses more colors */
+            background:linear-gradient(180deg, rgba(96,165,250,.2), rgba(167,139,250,.1)), var(--card);
             border:1px solid var(--border); border-radius:18px; padding:24px;
-            
-            /* Animation applied */
             animation: fadeIn 0.8s ease-out;
         }
-        .avatar{width:120px; height:120px; border-radius:16px; overflow:hidden; border:2px solid var(--accent);}
+        .avatar{width:120px; height:120px; border-radius:16px; overflow:hidden; border:3px solid var(--blue-acc); box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);}
         .avatar img{width:100%; height:100%; object-fit:cover}
         .title h1{margin:0; font-size:28px;}
-        .title .role{color:var(--muted); margin-top:6px}
+        .title .role{color:var(--cyan-acc); margin-top:6px; font-weight: 600;}
         .contact{display:flex; gap:12px; flex-wrap:wrap; justify-self:end}
+        
+        /* Contact chip animation */
         .chip{
             background:#1f2937; border:1px solid var(--border); 
             padding:8px 12px; border-radius:999px; font-size:13px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         .chip:hover {
-            background: rgba(96,165,250,.2); /* Subtle hover effect */
+            background: var(--blue-acc);
+            color: var(--bg);
+            border-color: var(--blue-acc);
+            cursor: pointer;
         }
-        .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:24px; margin-top:24px}
+
+        .grid{
+            display:grid; grid-template-columns:1.1fr .9fr; gap:24px; margin-top:24px;
+        }
         
-        /* Card hover animation */
         .card{
             background:var(--card); 
             border:1px solid var(--border); 
             border-radius:16px; 
             padding:18px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            animation: slideIn 0.8s ease-out backwards; /* Base slide-in animation */
         }
+        /* Staggered animation for each card */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+
         .card:hover {
-            transform: translateY(-4px); /* Slight lift */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+            border-color: var(--purple-acc);
         }
 
-        .card h2{margin:0 0 12px; font-size:18px;}
+        .card h2{margin:0 0 12px; font-size:18px; color: var(--blue-acc);}
         .section{display:grid; gap:12px}
-        .item{padding:12px; border-radius:12px; border:1px solid #1a2433; background:#0e1625}
+        
+        .item{
+            padding:12px; 
+            border-radius:12px; 
+            border:1px solid #1a2433; 
+            background:#0e1625;
+        }
+
         .row{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
         .muted{color:var(--muted)}
-        .tag{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; background:#0b1320; border:1px solid #172032; color:#cbd5e1; margin-right:8px}
         
+        /* Colorful Tags with Animation */
+        .tag{
+            display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; 
+            color: var(--text); margin-right:8px;
+            border: 1px solid transparent;
+            animation: sparkle 0.5s ease-out backwards;
+            transition: transform 0.2s ease;
+        }
+        .tag:nth-child(1) { background: linear-gradient(90deg, #ef4444, #f97316); border-color: #f97316; animation-delay: 0.6s; } /* Red/Orange */
+        .tag:nth-child(2) { background: linear-gradient(90deg, #8b5cf6, #c084fc); border-color: #c084fc; animation-delay: 0.7s; } /* Purple/Violet */
+        .tag:nth-child(3) { background: linear-gradient(90deg, #10b981, #34d399); border-color: #34d399; animation-delay: 0.8s; } /* Green/Emerald */
+        .tag:nth-child(4) { background: linear-gradient(90deg, #06b6d4, #22d3ee); border-color: #22d3ee; animation-delay: 0.9s; } /* Cyan/Teal */
+        .tag:hover { transform: scale(1.1); }
+
         /* Progress Bar Styling and Animation */
         .bar{height:8px; border-radius:999px; background:#0c1422; border:1px solid #172032; overflow:hidden}
         .bar span{
             display:block; 
             height:100%; 
-            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent)); /* Make gradient repeatable */
-            background-size: 200% 100%; /* Important for the pulse effect */
+            /* Multi-color pulsing gradient */
+            background: linear-gradient(90deg, var(--green-acc), var(--cyan-acc), var(--blue-acc), var(--purple-acc), var(--green-acc));
+            background-size: 400% 100%; 
             width:var(--w);
-            transition: width 1s ease-out; /* Smooth skill bar fill */
-            animation: pulseGradient 4s linear infinite; /* Subtle color shift animation */
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Slower, smoother fill */
+            animation: pulseGradient 6s linear infinite; 
         }
 
         @media (max-width: 860px){
@@ -103,7 +158,7 @@
             .contact{justify-self:start; margin-top: 10px;}
         }
         footer{margin-top:40px; color:var(--muted); font-size:12px; text-align:center}
-        a{color:#93c5fd; text-decoration:none}
+        a{color:var(--blue-acc); text-decoration:none}
         a:hover{text-decoration:underline}
     </style>
 </head>
@@ -161,9 +216,9 @@
             <section class="card">
                 <h2>Education</h2>
                 <div class="section">
-                    <div class="item"><div class="row"><strong>SSC:</strong><span class="muted">80%</span></div></div>
-                    <div class="item"><div class="row"><strong>HSC:</strong><span class="muted">65%</span></div></div>
-                    <div class="item"><div class="row"><strong>JEE:</strong><span class="muted">50%</span></div></div>
+                    <div class="item"><div class="row"><strong>State Board of Secondary Education (SSC):</strong><span class="muted">80%</span></div></div>
+                    <div class="item"><div class="row"><strong>Higher Secondary Certificate (HSC):</strong><span class="muted">65%</span></div></div>
+                    <div class="item"><div class="row"><strong>Joint Entrance Examination (JEE):</strong><span class="muted">50%</span></div></div>
                 </div>
             </section>
 
@@ -173,14 +228,13 @@
                     <div class="item"><div class="row"><strong>Programming:</strong><span class="muted">Python (learning), C basics</span></div><div class="bar" style="--w:58%"><span></span></div></div>
                     <div class="item"><div class="row"><strong>Data foundations:</strong><span class="muted">Statistics, visualization (beginner)</span></div><div class="bar" style="--w:45%"><span></span></div></div>
                     <div class="item"><div class="row"><strong>IoT & electronics:</strong><span class="muted">ESP32, sensors, prototyping</span></div><div class="bar" style="--w:62%"><span></span></div></div>
-                    
                     <div class="item"><div class="row"><strong>Soft skills:</strong><span class="muted">Teamwork, communication, time management</span></div><div class="bar" style="--w:80%"><span></span></div></div>
                 </div>
             </section>
         </div>
         
         <footer>
-            <p>Resume built with HTML & CSS | Sanchita S. Jadhav &copy; 2025</p>
+            <p>Built for Sanchita S. Jadhav with the best of HTML/CSS | Designed for a dynamic portfolio showcase.</p>
         </footer>
     </div>
 </body>
